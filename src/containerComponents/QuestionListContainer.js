@@ -12,7 +12,7 @@ export default class QuestionListContainer extends Component {
 
 	componentDidMount() {
 		axios
-			.get('https://polls.apiblueprint.org/questions')
+			.get('https://polls.apiblueprint.org/questions?page=1')
 			.then(res => this.setState({questions: res.data}))
 	}
 

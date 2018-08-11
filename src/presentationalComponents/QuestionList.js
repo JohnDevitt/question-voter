@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'grommet/components/Box'
-import Heading from 'grommet/components/Heading'
+import Header from 'grommet/components/Header'
 import Title from 'grommet/components/Title'
 import Label from 'grommet/components/Label'
 import Tiles from 'grommet/components/Tiles'
@@ -15,19 +15,20 @@ const QuestionList = ({questions, history}) => (
 		<PageTitle
 			title="Questions"
 			subtitle="Click on a question to vote on an answer"
+			label="New Question"
+			path="new"
 		/>
 		<Tiles>
 			{questions.map(question => (
 				<Tile key={question.question} pad="small">
 					<Box
 						pad="small"
-						size={{height: 'small', width: 'medium'}}
 						colorIndex="brand"
 						onClick={() => history.push(question.url)}
 					>
-						<Heading>
+						<Header>
 							<Title truncate={false}>{question.question}</Title>
-						</Heading>
+						</Header>
 						<Timestamp value={question.published_at} />
 						<Box responsive={false} direction="row">
 							<Label>{`Number of choices: ${question.choices.length}`}</Label>

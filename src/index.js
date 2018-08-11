@@ -6,11 +6,13 @@ import 'grommet/scss/vanilla/index.scss'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import QuestionListContainer from './containerComponents/QuestionListContainer'
 import QuestionContainer from './containerComponents/QuestionContainer'
+import NewQuestionContainer from './containerComponents/NewQuestionContainer'
 
 const Index = () => (
 	<Router>
-		<App centered={false}>
+		<App centered>
 			<Route exact path="/" component={QuestionListContainer} />
+			<Route exact path="/new" component={NewQuestionContainer} />
 			<Route exact path="/questions/:id" component={QuestionContainer} />
 		</App>
 	</Router>

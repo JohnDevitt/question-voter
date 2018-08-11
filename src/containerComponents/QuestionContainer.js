@@ -23,9 +23,8 @@ class QuestionContainer extends Component {
 			.then(res => this.setState({question: res.data}))
 	}
 
-	voteOnChoice = (questionId, choiceId) => {
+	voteOnChoice = (questionId, choiceId) =>
 		axios.post(`${baseUrl}/${questionId}/choices/${choiceId}`)
-	}
 
 	render() {
 		const {question} = this.state

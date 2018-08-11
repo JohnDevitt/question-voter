@@ -1,31 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import Box from 'grommet/components/Box'
 import Label from 'grommet/components/Label'
 import Table from 'grommet/components/Table'
-import TableRow from 'grommet/components/TableRow'
 import Button from 'grommet/components/Button'
 import PageTitle from './PageTitle'
-
-const StyledTableRow = styled(TableRow)`
-	border-bottom: 1px solid #434343;
-	background-color: ${({selected}) => (selected ? '#865cd6 ' : 'transparent')};
-	color: #${({selected}) => (selected ? 'ffffff ' : '000000')};
-	opacity: ${({selected}) => (selected ? '50' : '100')}%;
-`
+import StyledTableRow from './StyledTableRow'
 
 export default class Question extends React.Component {
 	static defaultProps = {
 		question: {}
 	}
 
-	constructor(props) {
-		super(props)
-		this.state = {
-			index: -1,
-			choice: {}
-		}
+	state = {
+		index: -1,
+		choice: {}
 	}
 
 	getPercentage = (votes, choices) => {
@@ -36,59 +25,61 @@ export default class Question extends React.Component {
 		return ((votes * 100) / totalVotes).toFixed(1)
 	}
 
-	render() {
+	voteOnChoice = () => {
 		const {question, voteOnChoice} = this.props
-		const {choice, index} = this.state
+		const {index, choice} = this.state
+		if (index === -1) return
+		voteOnChoice(question.url.split('/')[2], choice.url.split('/')[4])
+	}
+
+	render() {
+		const {question} = this.props
+		const {index} = this.state
 		return (
 			<Box>
 				<PageTitle
 					title="Questions Detail"
 					subtitle={`Question: ${question.question}`}
+					label="QuestionList"
+					path="/"
 				/>
-				<Box pad="medium">
-					<Table responsive>
-						<thead>
-							<tr>
-								<th>Choice</th>
-								<th>Votes</th>
-								<th>% of votes</th>
-							</tr>
-						</thead>
-						<tbody>
-							{question.choices.map((currentChoice, count) => (
-								<StyledTableRow
-									selected={count === index}
-									key={choice.choice}
-									onClick={() => this.setState({index, choice})}
-								>
-									<td>
-										<Label>{currentChoice.choice}</Label>
-									</td>
-									<td>
-										<Label>{currentChoice.votes}</Label>
-									</td>
-									<td>
-										<Label>
-											{this.getPercentage(
-												currentChoice.votes,
-												question.choices
-											)}
-										</Label>
-									</td>
-								</StyledTableRow>
-							))}
-						</tbody>
-					</Table>
+				<Table responsive>
+					<thead>
+						<tr>
+							<th>Choice</th>
+							<th>Votes</th>
+							<th>% of votes</th>
+						</tr>
+					</thead>
+					<tbody>
+						{question.choices.map((choice, count) => (
+							<StyledTableRow
+								selected={count === index}
+								key={choice.choice}
+								onClick={() => this.setState({index: count, choice})}
+							>
+								<td>
+									<Label>{choice.choice}</Label>
+								</td>
+								<td>
+									<Label>{choice.votes}</Label>
+								</td>
+								<td>
+									<Label>
+										{this.getPercentage(choice.votes, question.choices)}
+									</Label>
+								</td>
+							</StyledTableRow>
+						))}
+					</tbody>
+				</Table>
+				<Box pad="small" />
+				<Box alignSelf="end">
 					<Button
-						box
-						plain={false}
-						size="medium"
-						alignSelf="end"
 						label="Save Vote!"
-						onClick={() =>
-							voteOnChoice(question.url.split('/')[2], choice.url.split('/')[4])
-						}
+						onClick={this.voteOnChoice}
 						primary
+						path="/"
 					/>
 				</Box>
 			</Box>
