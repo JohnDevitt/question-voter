@@ -5,14 +5,11 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --mode development --open --hot --inline",
-		"build": "webpack --mode production",
+		"build": "webpack-dev-server --mode production",
 		"precommit": "lint-staged"
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,json,css,md}": [
-			"eslint --fix src",
-			"git add"
-		]
+		"src/**/*.{js,jsx,json,css,md}": ["eslint --fix src", "git add"]
 	},
 	"keywords": [],
 	"author": "",
