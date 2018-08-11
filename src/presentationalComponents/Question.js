@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Box from 'grommet/components/Box'
-import Headline from 'grommet/components/Headline'
 import Label from 'grommet/components/Label'
 import Table from 'grommet/components/Table'
 import TableRow from 'grommet/components/TableRow'
 import Button from 'grommet/components/Button'
+import PageTitle from './PageTitle'
 
 const StyledTableRow = styled(TableRow)`
 	border-bottom: 1px solid #434343;
@@ -41,17 +41,10 @@ export default class Question extends React.Component {
 		const {choice, index} = this.state
 		return (
 			<Box>
-				<Box
-					direction="row"
-					justify="between"
-					size="large"
-					pad={{horizontal: 'medium'}}
-				>
-					<Box>
-						<Headline>Questions Detail</Headline>
-						<Headline size="small">Question: {question.question}</Headline>
-					</Box>
-				</Box>
+				<PageTitle
+					title="Questions Detail"
+					subtitle={`Question: ${question.question}`}
+				/>
 				<Box pad="medium">
 					<Table responsive>
 						<thead>

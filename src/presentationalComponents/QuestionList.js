@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'grommet/components/Box'
-import Headline from 'grommet/components/Headline'
 import Heading from 'grommet/components/Heading'
 import Title from 'grommet/components/Title'
 import Label from 'grommet/components/Label'
@@ -9,22 +8,14 @@ import Tiles from 'grommet/components/Tiles'
 import Tile from 'grommet/components/Tile'
 import Timestamp from 'grommet/components/Timestamp'
 import {withRouter} from 'react-router'
+import PageTitle from './PageTitle'
 
 const QuestionList = ({questions, history}) => (
 	<Box>
-		<Box
-			direction="row"
-			justify="between"
-			size="large"
-			pad={{horizontal: 'medium'}}
-		>
-			<Box>
-				<Headline>Questions</Headline>
-				<Headline size="small">
-					Click on a question to vote on an answer
-				</Headline>
-			</Box>
-		</Box>
+		<PageTitle
+			title="Questions"
+			subtitle="Click on a question to vote on an answer"
+		/>
 		<Tiles>
 			{questions.map(question => (
 				<Tile key={question.question} pad="small">
