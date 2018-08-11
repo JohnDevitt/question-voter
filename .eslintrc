@@ -14,16 +14,26 @@
         ]
       }
     ],
+    "react/forbid-prop-types": [
+      false
+    ],
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": "es5",
+        "printWidth": 80,
+        "tabWidth": 2,
+        "useTabs": true,
+        "semi": false,
         "singleQuote": true,
-        "printWidth": 80
+        "trailingComma": "none",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": false,
+        "arrowParens": "avoid",
       }
     ]
   },
   "plugins": [
     "prettier"
-  ]
+  ],
+  "parser": "babel-eslint",
 }

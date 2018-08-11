@@ -9,7 +9,10 @@
 		"precommit": "lint-staged"
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,json,css,md}": ["eslint --fix src", "git add"]
+		"src/**/*.{js,jsx,json,css,md}": [
+			"eslint --fix src",
+			"git add"
+		]
 	},
 	"keywords": [],
 	"author": "",
@@ -17,6 +20,7 @@
 	"dependencies": {
 		"axios": "^0.18.0",
 		"grommet": "^1.11.0",
+		"prop-types": "^15.6.2",
 		"react": "^16.4.2",
 		"react-dom": "^16.4.2",
 		"react-router": "^4.3.1",
@@ -25,6 +29,7 @@
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",
+		"babel-eslint": "^8.2.6",
 		"babel-loader": "^7.1.5",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
